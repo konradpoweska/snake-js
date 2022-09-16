@@ -18,6 +18,12 @@ const SNAKE_DIRECTIONS = {
   DOWN: { axis: 'y', value: 1 },
   LEFT: { axis: 'x', value: -1 },
 };
+const BUTTON_DIRECTION = {
+  upButton: 'UP',
+  rightButton: 'RIGHT',
+  downButton: 'DOWN',
+  leftButton: 'LEFT',
+};
 const KEY_DIRECTION = {
   ArrowUp: 'UP',
   ArrowRight: 'RIGHT',
@@ -116,9 +122,23 @@ const iteration = () => {
 };
 
 // INIT
+const changeDirection = (direction) =>
+  directionChangesQueue.push(SNAKE_DIRECTIONS[direction]);
+
 document.body.addEventListener('keydown', (e) => {
-  if (!(e.key in KEY_DIRECTION)) return;
-  directionChangesQueue.push(SNAKE_DIRECTIONS[KEY_DIRECTION[e.key]]);
+  const direction = KEY_DIRECTION[e.key]
+  if (direction) changeDirection(direction);
 });
+
+for (let buttonId in BUTTON_DIRECTION) {
+  const button = document.getElementById(buttonId);
+  const direction = BUTTON_DIRECTION[buttonId];
+
+  button.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    changeDirection(direction);
+  });
+  button.addEventListener('click', () => changeDirection(direction));
+}
 
 const interval = setInterval(iteration, FRAME_INTERVAL);

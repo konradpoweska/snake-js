@@ -33,3 +33,39 @@ body {
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
 }
+
+.screenControls {
+  display: flex;
+  align-items: center;
+  gap: .1em;
+  justify-content: center;
+}
+.screenControls > div {
+  display: flex;
+  flex-direction: column;
+  gap: .1em;
+}
+
+.directionButton {
+  width: 30vw;
+  height: 30vw;
+  max-width: 150px;
+  max-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+.directionButton::before {
+  width: 0;
+  height: 0;
+  content: '';
+  border: .6em solid transparent;
+  border-bottom-color: white;
+  border-top-width: 0;
+}
+
+#rightButton::before { transform: rotate(90deg); }
+#leftButton::before { transform: rotate(-90deg); }
+#downButton::before { transform: rotate(180deg); }
