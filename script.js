@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // CONFIG
 const CANVAS_SIZE = {
@@ -126,7 +126,7 @@ const changeDirection = (direction) =>
   directionChangesQueue.push(SNAKE_DIRECTIONS[direction]);
 
 document.body.addEventListener('keydown', (e) => {
-  const direction = KEY_DIRECTION[e.key]
+  const direction = KEY_DIRECTION[e.key];
   if (direction) changeDirection(direction);
 });
 
