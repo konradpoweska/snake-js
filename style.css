@@ -31,10 +31,12 @@ body.gameOver {
 
 .mainWrapper {
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .header {
-  margin-bottom: 1em;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,26 +55,23 @@ body.gameOver {
 }
 
 .screenControls {
-  display: flex;
-  align-items: center;
-  gap: 0.1em;
-  justify-content: center;
-}
-.screenControls > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1em;
+  display: grid;
+  grid-template: 1fr 1fr / 2fr 3fr 2fr;
+  gap: 5px;
 }
 
 .directionButton {
-  width: 30vw;
-  height: 30vw;
-  max-width: 150px;
-  max-height: 150px;
+  min-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: black;
+  /* border: 1px solid #888; */
+}
+
+#leftButton,
+#rightButton {
+  grid-area: span 2 / span 1;
 }
 
 .directionButton::before {
