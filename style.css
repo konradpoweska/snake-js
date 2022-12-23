@@ -2,13 +2,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #000;
+  --gameOver-color: #fee;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #fff;
+    --background-color: #111;
+    --gameOver-color: #211;
+  }
+}
+
 body {
+  background-color: var(--background-color);
+  color: var(--primary-color);
   font-family: monospace;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   margin: 0;
+}
+body.gameOver {
+  background-color: var(--gameOver-color);
 }
 
 .mainWrapper {
@@ -26,7 +44,7 @@ body {
 }
 
 .gameCanvas {
-  border: 2px solid #000;
+  border: 2px solid var(--primary-color);
   max-width: 100%;
   width: 480px;
   image-rendering: pixelated;

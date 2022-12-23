@@ -64,15 +64,28 @@ const scoreContainer = document.getElementById('scoreContainer');
 const increaseScore = () => (scoreContainer.innerHTML = `${++score}`);
 
 const loseGame = () => {
-  document.body.style.backgroundColor = '#fee';
   clearInterval(interval);
+  document.body.classList.add('gameOver');
 };
+
+// COLOR
+const getPrimaryColor = () =>
+  getComputedStyle(document.documentElement).getPropertyValue(
+    '--primary-color'
+  );
+let primaryColor = getPrimaryColor();
+
+window
+  .matchMedia('(prefers-color-scheme: dark)')
+  .addEventListener('change', () => {
+    primaryColor = getPrimaryColor();
+  });
 
 // RENDERING
 
 /** @param ctx {CanvasRenderingContext2D} */
 const drawRectangle = (ctx, { x, y }, color) => {
-  ctx.fillStyle = color ?? '#000';
+  ctx.fillStyle = color ?? primaryColor;
   ctx.fillRect(x * GRID_DENSITY, y * GRID_DENSITY, GRID_DENSITY, GRID_DENSITY);
 };
 
